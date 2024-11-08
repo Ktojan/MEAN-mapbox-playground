@@ -1,27 +1,21 @@
 # MEANMapboxPlayground
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+This is my demo Angular app based on Mapbox GL (https://docs.mapbox.com/mapbox-gl-js/guides). Probably you'll need your public API token. Most of the data and objects in app are "science fiction". Created in November 2024.
+
+Libs and plugins I used: 
+- https://github.com/Wykks/ngx-mapbox-gl - wrapper for Angular by Wykks
+- mapbox-gl-draw for Drawing mode
+- Angular Material for ui elements and theming
+- Node.js + Express 4 + jade for server
+
+Video presentation on Google Drive: https://drive.google.com/file/d/1r81Srnv0GslzlYSG2zmBMC5orbp0lwFl/view?usp=sharing 
+Live demo on Vercel: https://leaflet-geojson-saudi-farming.vercel.app/ 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm start` for both node.js server (port 3000 by default) and frontend app on `http://localhost:4200/`. 
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

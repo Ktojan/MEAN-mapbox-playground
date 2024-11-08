@@ -1,0 +1,14 @@
+[
+    {
+       "name":"mercator"
+    },
+    {
+       "name":"equirectangular"
+    },
+    {
+       "name":"equalEarth"
+    },
+    {
+       "name":"naturalEarth"
+    }
+ ]

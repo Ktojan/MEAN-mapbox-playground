@@ -1,0 +1,51 @@
+:host,
+mgl-map {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.popup {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.top-left {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  max-width: 45vw;
+}
+
+#d3-control {
+  padding: 0 5px;
+  background-color: white;
+  border-radius: 4px;
+
+  ::ng-deep label {
+    color: rgb(66, 66, 66) !important;
+  }
+}
+
+#zoom-control {
+  padding: 0 5px;
+  background-color: white;
+  color: rgb(66, 66, 66);
+}
+
+.marker-icon {
+  width: 100%;
+  text-align: center;
+  margin-top: -5px;
+}
+
+::ng-deep.mat-icon {
+  width: 36px;
+  height: 36px;
+}
+
+::ng-deep.mat-expansion-panel-header-description {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: large;
+}

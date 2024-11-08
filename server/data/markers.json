@@ -1,0 +1,110 @@
+[
+    {
+        "id": 10,
+        "name": "Commercial Square",
+        "location": "lisbon",
+        "coords": [
+            -9.13642757293934,
+            38.707348250968295
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Castelo",
+        "location": "lisbon",
+        "coords": [
+            -9.132469968937585,
+            38.71435698028969
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Road split Tabuk",
+        "location": "tabuk",
+        "coords": [
+            36.582927714803134,
+            28.51732617964609
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Footbal place",
+        "location": "lisbon",
+        "coords": [
+            -9.265371848615729,
+            38.70788107501326
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Perfect view",
+        "location": "sanjose",
+        "coords": [
+            -122.512790778657,
+            37.58741645307262
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Fantastic roof rest",
+        "location": "manhattan",
+        "coords": [
+            -74.00687127408726,
+            40.7047999968766
+        ]
+    },
+    {
+        "id": 21,
+        "name": "ping-pong tables",
+        "location": "manhattan",
+        "coords": [
+            -74.00273889395896,
+            40.71541271720554
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Best pizza ever",
+        "location": "manhattan",
+        "coords": [
+            -73.97797659199699,
+            40.725595752671296
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Lafayette",
+        "location": "sanjose",
+        "coords": [
+            -122.12697145651417,
+            37.885912597180614
+        ]
+    },
+    {
+        "id": 25,
+        "name": "NUQ",
+        "location": "sanjose",
+        "coords": [
+            -122.05804773338718,
+            37.410920738103115
+        ]
+    },
+    {
+        "id": 26,
+        "name": "ParkRow",
+        "location": "manhattan",
+        "coords": [
+            -74.00169796186209,
+            40.70864769535433
+        ]
+    },
+    {
+        "id": 27,
+        "name": "City Hall Park",
+        "location": "manhattan",
+        "coords": [
+            -74.00648365350322,
+            40.71305128890799
+        ]
+    }
+]

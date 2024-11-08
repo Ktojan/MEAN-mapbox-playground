@@ -1,0 +1,46 @@
+[
+    {
+       "name":"lisbon",
+       "label":"Lisbon",
+       "initialZoom":15,
+       "coords":[
+          -9.13375953828801,
+          38.71596224520072
+       ]
+    },
+    {
+       "name":"manhattan",
+       "label":"New York",
+       "initialZoom":15.5,
+       "coords":[
+          -74.0066,
+          40.7135
+       ]
+    },
+    {
+       "name":"sanjose",
+       "label":"California",
+       "initialZoom":6,
+       "coords":[
+          -121.89934412154716,
+          37.3323119983157
+       ],
+       "layers":[
+          "quakes",
+          "polygons"
+       ]
+    },
+    {
+       "name":"tabuk",
+       "label":"Tabuk (S.Arabia)",
+       "initialZoom":10,
+       "coords":[
+          36.60157535807713,
+          28.570822845044518
+       ],
+       "layers":[
+          "polygons",
+          "lines"
+       ]
+    }
+ ]
