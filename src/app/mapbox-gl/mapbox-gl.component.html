@@ -1,146 +1,67 @@
+
 <mgl-map *ngIf="showMap"
   [style]="config.mapStyle"
+  [interactive]="config.interactive"
   [zoom]="[config.currentZoom]" 
-  [center]="config.currentLocation.coords"
+  [center]="Theather_coords"
   [pitch]="[config.pitch]"
   [bearing]="[config.bearing]"
   [projection]="config.projection"
   [accessToken]="Public_TOKEN$ | async"
-  (mapCreate)="mapCreation($event)"
-  (mapLoad)="onLoad($event.target)"
   (zoomEnd)="onZoomEnd($event.target)"
+  (pitchEnd)="onPitchEnd($event.target)"
+  (rotateEnd)="onBearingEnd($event.target)"
+  (mapCreate)="mapCreation($event)"
   (mapError)="mapErrorHandler($event)"
 >
 
 <!-- --------------   CONTROLS -------------------- -->
 
-<mgl-control *ngIf="config.mapStyle == streetsMapStyle && config.currentZoom >= config.minZoom3D">
+<mgl-control>
   <div id="d3-control">
-    <mat-slide-toggle [(ngModel)]="config.show3D">Houses<br> in 3D</mat-slide-toggle>
+    <mat-slide-toggle [checked]="!animationIsStopped" (change)="toggleCameraAnimation($event)">Start/stop 3D motion</mat-slide-toggle>
   </div>
 </mgl-control>
 <mgl-control>
-  <button mat-flat-button id="zoom-control" [matMenuTriggerFor]="beforeMenu">
-    <mat-icon>more_vert</mat-icon>
-    <span> Zoom:{{config.currentZoom}}</span></button>
-  <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button *ngFor="let level of zoomLevels" (click)="setZoomLevel(level)" mat-menu-item>
-      {{level.scale}}</button>
-</mat-menu>
+  <button mat-flat-button id="zoom-control">
+    <span> Zoom: {{config.currentZoom}}</span><br>
+    <span> Pitch: {{config.pitch}}°</span><br>
+    <span> Rotation: {{config.bearing}}°</span>
+  </button>
 </mgl-control>
-<mgl-control mglFullscreen position="top-right"></mgl-control>
-<mgl-control mglGeocoder position="top-left"></mgl-control>
-<mgl-control mglGeolocate position="top-right" (geolocate)="onGeolocate($event)"></mgl-control>
-<mgl-control mglNavigation position="top-right"></mgl-control>
+<mgl-control *ngIf="videoIsVisible" position="top-left">
+    <iframe #embededvideo
+     src="https://www.youtube.com/embed/t0DYY_MoK_c?start=46&end=63&autoplay=1"
+     width="600" height="255"
+     title="Drone footage of Odessa's (Ukraine) Opera Theater" 
+     allow="autoplay; clipboard-write; encrypted-media;" allowfullscreen="false"
+     referrerpolicy="strict-origin-when-cross-origin" marginwidth="0"></iframe>
+</mgl-control>
 <mgl-control mglScale position="bottom-right"></mgl-control>
+<ng-container *ngIf="config.interactive">
+  <mgl-control mglFullscreen position="top-left"></mgl-control>
+  <mgl-control mglNavigation position="top-left"></mgl-control>
+</ng-container>
 
 <!-- --------------   LAYERS -------------------- -->
-  <mgl-layer
-      id="polygons"
-      type="fill"
-      [source]="tabuk_area_polygons"
-      [layout]="config.layouts.polygons"
-      [paint]="config.paints.fill"
-      (layerClick)="layerClick($event)">
-   </mgl-layer> 
-  <mgl-layer
-      id="lines"
-      type="line"
-      [source]="tabuk_area_lines"
-      [layout]="config.layouts.lines"
-      [paint]="config.paints.line"
-      (layerClick)="layerClick($event)">
-    </mgl-layer>
-    <mgl-layer *ngIf="config.show3D"
+    <mgl-layer 
       id="3d-buildings"
       source="composite"
       sourceLayer="building"
       [filter]="['==', 'extrude', 'true']"
       type="fill-extrusion"
-      [minzoom]="config.minZoom3D"
       [before]="'housenum-label'"
       [paint]="config.paints.d3buildings">
-    </mgl-layer> 
-    <mgl-layer
-        id="sanfranc"
-        type="fill"
-        [source]="san_franc_cal_contour"
-        [layout]="config.layouts.polygons"
-        [paint]="config.paints.fill"
-        (layerClick)="layerClick($event)">
-      </mgl-layer> 
-      <mgl-popup *ngIf="selectedLngLat" [lngLat]="selectedLngLat">
-        <div [innerHTML]="selectedElementPopup" class="popup"></div>
-      </mgl-popup>
+    </mgl-layer>  
 
-      <ng-container *ngIf="config.currentLocation.layers && config.currentLocation.layers.includes('quakes')">
-        <mgl-geojson-source
-          id="earthquakes"
-          [data]="earthquakes"
-          [cluster]="true"
-          [clusterMaxZoom]="15"
-          [clusterRadius]="20"
-        ></mgl-geojson-source>
-        <mgl-layer
-          *ngFor="let layer of clusterLayers"
-          [id]="layer.id"
-          [type]="$any(layer.type)"
-          [layout]="config.layouts.quakes"
-          source="earthquakes"
-          [filter]="layer.filter"
-          [paint]="layer.paint"
-          before="waterway-label"
-        ></mgl-layer>
-      </ng-container>
-
-<!-------------------  MARKERS, POINTS ---------------->
-    <ng-container *ngFor="let marker of customMarkers; index as index">
-      <mgl-marker #myMarker
-        [lngLat]="marker.coords?.length>0 ? marker.coords : config.currentLocation.coords"
-        [id]="marker.name"
-        [draggable]="true"
-        (markerDragEnd)="onDragEnd($event, marker)"
-        >
-        <div [style.color]="colorShades.violet[index] || 'darkviolet'">{{marker.name}}</div>
-      <mat-icon [style.color]="colorShades.violet[index] || 'darkviolet'"
-       class="marker-icon" aria-hidden="false" aria-label="Map marker" fontIcon="star">       
-      </mat-icon>
-    </mgl-marker>
-    <mgl-popup [marker]="myMarker">
-      <p><b>{{marker.name}}</b></p>
-      <p *ngIf="marker.coords">coordinates: {{marker.coords.join(', ')}}</p> </mgl-popup>  
-    </ng-container>
-</mgl-map>
-
-<!-------------------  CUSTOM INTERACTIVITY COMPONENT ---------------->
-<div class="top-left">
-  <app-user-interaction
-   [config]="config"
-   [map]="map"
-   [locations]="locations"
-   [isFloating]="isFloating"
-   [customMarkers]="customMarkers"
-   (changeMapLocation)="changeMapLocation($event)"
-   (toggleLayer)="toggleLayer($event)"
-   (toggleFloating)="toggleFloating()"
-   (toggleOnlyLocationMarkers)="toggleOnlyLocationMarkers()"
-   (changeMapTilesStyle)="changeMapTilesStyle($event)"
-   (updateMarkers)="addOrRemoveMarkers($event)"
-   (exportMarkersToFile)="exportMarkersToFile()"
-   (exportDrawToFile)="exportDrawToFile($event)"
-   (centerToEntity)="centerMapTo($event)"
-   (changeProjection)="changeProjection($event)"
-   ></app-user-interaction>
-</div>
-
-<ng-template #tokenModal>
-  <h1 mat-dialog-title>Provide please valid Mapbox API token </h1>
-  <div mat-dialog-content>
-      <p *ngIf="errorMessage">You've faced with this kind of error: {{errorMessage}}</p>
-      <input matInput #tokenString [style.width]="'95%'">
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="updateToken()">Cancel</button>
-    <button mat-flat-button (click)="updateToken(tokenString.value.trim())" cdkFocusInitial>APPLY!</button>
-  </div>
-</ng-template>
+    <ng-template #tokenModal>
+      <h1 mat-dialog-title>Provide please valid Mapbox API token </h1>
+      <div mat-dialog-content>
+          <p *ngIf="errorMessage">You've faced with this kind of error: {{errorMessage}}</p>
+          <input matInput #tokenString [style.width]="'95%'">
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="updateToken()">Cancel</button>
+        <button mat-flat-button (click)="updateToken(tokenString.value.trim())" cdkFocusInitial>APPLY!</button>
+      </div>
+    </ng-template>
