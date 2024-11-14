@@ -1,10 +1,10 @@
-
 header {
+    box-sizing: border-box;
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 1rem 4rem;
-    height: 5vh;
+    padding: 1rem 2rem;
+    height: 8vh;
     width: 100%;
     background-color: #224f34;
     opacity: 0.85;
@@ -12,83 +12,57 @@ header {
     font-size: xx-large;
 }
 
+.navbar {
+    width: 100%;
+    align-items: center;
+}
+
 article {
     display: flex;
     justify-content: center;
     margin: 1rem auto;
-    height: 80vh;
+    height: 83vh;
     width: 90vw;
-    margin-bottom: 2rem;
 }
 
-
-/// ------   Footer ------- ///
-.new_footer_area {
-    background: #224f34;
+.about-button {
+    font-size: large;
+    border: 3px solid ivory;
+    padding: 5px 25px;
 }
 
-.new_footer_top {
-    position: relative;
-    overflow-x: hidden;
-}
-
-.footer {
-    color: #fefefe;
+.about-card {
     width: 100%;
-    bottom: 0;
-    left: 0;
-
-    .content {
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    .content p {
-        margin-bottom: 1rem;
-    }
-
-    .content h4 {
-        margin-bottom: 1rem;
-        font-size: 19px;
-    }
-
-    .details {
-        max-width: 60%;
-    }
+    font-size: large;
+    color: white;
+    padding: 15px;
 
     a {
-        color: #fefefe;
-        cursor: pointer;
+        color: ivory;
+        font-weight: bold;
+    }
+    #avatar-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 2rem;
+    }
+    #opera-image {
+        width: 80%;
+        margin-top: 1rem;
+        border-radius: 5px;
     }
 
-    .social-media a {
-        display: block;
-        line-height: 2rem;
-    }
-}
+    .bottom-links {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid ivory;
 
-@media (max-width: 767px) {
-    .footer .content {
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
+        a {
+        text-decoration: none;
+        border: 1px solid white;
+        padding: 5px 8px;
+        margin: auto;
+        }
     }
-
-    .footer {
-        position: unset;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-
-    .footer .content,
-    .footer {
-        font-size: 14px;
-    }
-}
-
-@media (orientation: landscape) and (max-height: 500px) {
-    .footer {
-        position: unset;
-    }
-}
+}  

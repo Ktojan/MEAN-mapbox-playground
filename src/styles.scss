@@ -2,50 +2,27 @@
 
 $theme: mat.define-theme();
 
-html {
-  --mat-expansion-header-collapsed-state-height: 40px; //todo
-
-  .mdc-switch {
-    margin-right: 0.5rem;
-  }
-}
-
 body {
     font-family: 'Roboto', "Helvetica Neue", sans-serif;
     position: relative;
     align-content: center;
     margin: auto;
     font-family: sans-serif;
-    background-color: #f3f4f6;
-    overflow-x: hidden;
+    background-image: url('../public/images/opera.jpg');
+    background-size: cover;
 }
 
 .flex {
     display: flex;
 }
 
-.column {
-    flex-direction: column;
-}
-
 .between {
     justify-content: space-between;
 }
 
-.vert-center {
-    align-items: center;
-    align-content: center;
-}
-
 .usual-border {
-    border: 3px solid gray;
+    border: 6px solid gray;
     border-radius: 20px;
-}
-
-.base-select {
-    font-size: 16px;
-    padding: 4px;
-    border-radius: 6px;
 }
 
 // --------  Some rules rewriting mapbox-gl.css styles ------- //
@@ -53,12 +30,8 @@ body {
     border-radius: 20px;
 }
 
-.mapboxgl-popup-content {
-    background: ivory;
-    border-radius: 10px;
-}
 .mapboxgl-ctrl-top-right {
-    max-width: 110px;
+    max-width: 200px;
     right: 5px;
     display: flex;
     flex-direction: column;
@@ -67,18 +40,9 @@ body {
         margin: 5px auto;
     }    
     .mapboxgl-ctrl-group button {
-        width: 40px;
-        height: 40px;
+        width: auto;
+        height: 70px;
     }
 }
 
-.mapboxgl-marker, .mat-mdc-chip {
-    cursor: pointer;
-    font-size: large;
-    font-weight: bold;
-}
-
-.mdc-evolution-chip__action--presentational {
-    cursor: zoom-in !important;
-}
 
